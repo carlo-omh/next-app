@@ -1,3 +1,6 @@
+const api = require('./utils/caching/api')
+const images = require('./utils/caching/images')
+
 const withOffline = moduleExists('next-offline')
   ? require('next-offline')
   : {};
@@ -5,23 +8,11 @@ const withOffline = moduleExists('next-offline')
 const nextConfig = {
   target: 'serverless',
   workboxOpts: {
+    cacheId: 'omh-web',
     swDest: 'static/service-worker.js',
     runtimeCaching: [
-      {
-        urlPattern: /^https?.*/,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'https-calls',
-          networkTimeoutSeconds: 15,
-          expiration: {
-            maxEntries: 150,
-            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
+      api,
+      images,
     ],
   },
 }
