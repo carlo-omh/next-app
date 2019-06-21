@@ -1,0 +1,8 @@
+[ignore]
+.*/static/*
+
+[include]
+
+[libs]
+
+[options]

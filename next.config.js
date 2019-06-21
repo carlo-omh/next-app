@@ -11,8 +11,34 @@ const nextConfig = {
     cacheId: 'omh-web',
     swDest: 'static/service-worker.js',
     runtimeCaching: [
-      api,
-      images,
+      {
+        urlPattern: /^https?.*/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'https-calls',
+        }
+      },
+      {
+        urlPattern: /.jpg$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'cache-jpg'
+        }
+      },
+      {
+        urlPattern: new RegExp('^https://s3-ap-southeast-1.amazonaws.com/*'),
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheName: 'cache-avatars'
+        }
+      },
+      {
+        urlPattern: new RegExp('^https://misdirection.ohmyhome.com/image/*'),
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheName: 'cache-listing-image'
+        }
+      },
     ],
   },
 }
