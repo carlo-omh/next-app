@@ -1,8 +1,6 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 
 class OMHApp extends App {
@@ -22,11 +20,9 @@ class OMHApp extends App {
         <Head>
           <title>My OMH page</title>
         </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
+        <div>
           <Component {...pageProps} />
-        </ThemeProvider>
+        </div>
       </Container>
     );
   }

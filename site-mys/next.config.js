@@ -50,7 +50,7 @@ module.exports = moduleExists('next-offline')
 function moduleExists(name) {
   try {
     return require.resolve(name);
-  } catch (error) {
+  } catch(error) {
     return false;
   }
 }

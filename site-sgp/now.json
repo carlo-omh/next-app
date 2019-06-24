@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "omh-sgp",
+  "alias": "omh-sgp.carloomh",
+  "build": {
+    "env": {
+      "DEPLOY": "true"
+    }
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/next"
+    }
+  ]
+}
